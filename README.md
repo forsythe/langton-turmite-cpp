@@ -5,6 +5,8 @@ I remade my [processing version of langton's turmite](https://github.com/forsyth
 ### How it works  
 The program will ask you for a movement pattern when you first run it. See explanation given in the processing version above.
 
+### Controls  
+`SPACEBAR`: Toggle pause  
 
 ### Gallery  
 Movement pattern: `LLRRRLRRRRR`  
