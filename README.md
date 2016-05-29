@@ -10,6 +10,9 @@ The program will ask you for a movement pattern when you first run it. See expla
 Movement pattern: `LLRRRLRRRRR`  
 ![demo](https://i.gyazo.com/7d90599e63ad8938486b800b9ec3233c.gif)  
 
+Movement pattern: `LRRL`  
+![demo](https://i.gyazo.com/dbcf37f792bf6d6b6248d5f061add711.gif)  
+
 Movement pattern: `RRRLRLLLLLLRRRRL`  
 ![demo](https://i.gyazo.com/689db989ddaf5a09311b74c2f792f80c.gif)  
 
