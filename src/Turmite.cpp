@@ -1,16 +1,23 @@
 #include "Turmite.h"
-
-Turmite::Turmite(int r_rhs, int c_rhs, int angle_rhs, int num_rows, int num_cols, std::string moves_rhs) {
+using namespace std;
+Turmite::Turmite(int r_rhs, int c_rhs, int angle_rhs, int num_rows, int num_cols, const std::string& moves_rhs) {
     r = r_rhs;
     c = c_rhs;
+    cout << "starting at " << r << " " << c <<endl;
+    cout << "total rc " << num_rows << " " << num_cols << endl;
     angle = angle_rhs;
     max_rows = num_rows;
     max_cols = num_cols;
     moves = moves_rhs;
+    moveLeft = new bool[moves.length()];
+
+    for (int k = 0; k < moves.length(); k++) {
+        *(moveLeft+k) = (moves.at(k) == 'L');
+    }
 }
 
 void Turmite::move(int cur_cell) {
-    angle += moves.at(cur_cell) == 'L' ? 90: -90;
+    angle += *(moveLeft+cur_cell) ? 90: -90;
 
     if (angle < 0)
         angle = 270;

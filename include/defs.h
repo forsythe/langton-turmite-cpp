@@ -6,5 +6,6 @@
 #define TITLE "Langton's turmite"
 
 #define CELLSIZE 2
+#define STEPSPERFRAME 1
 
 #endif // DEFS_H_INCLUDED

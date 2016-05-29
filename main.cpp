@@ -13,7 +13,7 @@ using namespace std;
 
 struct Color {
     int r, g, b;
-    Color(){
+    Color() {
         r = 0;
         g = 0;
         b = 0;
@@ -30,8 +30,8 @@ int rows, cols;
 int numStates;
 string movementPattern;
 
-Turmite* t;
-Color* palette = new Color[10];
+
+Color* palette;
 Color termiteColor = Color(255, 0, 0);
 
 void update() {
@@ -40,24 +40,29 @@ void update() {
     CSDLInputManagerLite::getInstance() -> update();
 }
 
-void iteration() {
+void iteration(Turmite* t) {
     int tempColor = cells[t->r][t->c];
     cells[t->r][t->c]++;
 
     if (cells[t->r][t->c] == numStates)
         cells[t->r][t->c] = 0;
 
-    CSDLManagerLite::getInstance() -> setColor(
-        palette[cells[t->r][t->c]].r,
-        palette[cells[t->r][t->c]].g,
-        palette[cells[t->r][t->c]].b,
-        255);
-
-    CSDLManagerLite::getInstance() -> drawRectTLCorner(t->c*CELLSIZE, t->r*CELLSIZE, CELLSIZE, CELLSIZE);
-
     t -> move(tempColor);
-    CSDLManagerLite::getInstance() -> setColor(termiteColor.r, termiteColor.g, termiteColor.b, 255);
-    CSDLManagerLite::getInstance() -> drawRectTLCorner(t->c*CELLSIZE, t->r*CELLSIZE, CELLSIZE, CELLSIZE);
+
+}
+
+void redrawGrid(){
+    CSDLManagerLite::getInstance() -> background();
+
+    for (int r = 0; r < rows; r++){
+        for (int c = 0; c < cols; c++){
+            if (cells[r][c] > 0){
+                int temp = cells[r][c];
+                CSDLManagerLite::getInstance() -> setColor(palette[temp].r, palette[temp].g, palette[temp].b, 255);
+                CSDLManagerLite::getInstance() -> drawRectTLCorner(c*CELLSIZE, r*CELLSIZE, CELLSIZE, CELLSIZE);
+            }
+        }
+    }
 }
 
 int main(int argc, char *argv[]) {
@@ -68,7 +73,9 @@ int main(int argc, char *argv[]) {
     getline(cin, movementPattern);
     numStates = movementPattern.length();
 
-    t = new Turmite(rows/2, cols/2, 0, rows, cols, movementPattern);
+    palette = new Color[numStates];
+
+    Turmite* bob = new Turmite(rows/2, cols/2, 0, rows, cols, movementPattern);
 
     for (int r = 0; r < rows; r++) {
         for (int c = 0; c < cols; c++) {
@@ -85,13 +92,22 @@ int main(int argc, char *argv[]) {
 
     CSDLManagerLite::getInstance()->initializeSDL(WIDTH, HEIGHT, TITLE);
 
+    int steps = 0;
     while (!CSDLInputManagerLite::getInstance() -> isExit()) {
-        iteration();
-        update();
+        iteration(bob);
+
+        if (steps%STEPSPERFRAME == 0){
+            CSDLManagerLite::getInstance() -> setColor(termiteColor.r, termiteColor.g, termiteColor.b, 255);
+            CSDLManagerLite::getInstance() -> drawRectTLCorner(bob->c*CELLSIZE, bob->r*CELLSIZE, CELLSIZE, CELLSIZE);
+            redrawGrid();
+            update();
+        }
+        steps++;
     }
 
+    cout << "steps taken: " + steps << endl;
     CSDLManagerLite::getInstance()->clean();
-    delete t;
+    delete bob;
     delete[] palette;
     return 0;
 }

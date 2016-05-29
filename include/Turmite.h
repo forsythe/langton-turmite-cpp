@@ -8,10 +8,12 @@ public:
     int r, c, angle;
     int max_rows, max_cols;
     std::string moves;
+    bool *moveLeft;
 
-    Turmite(int, int, int, int, int, std::string);
+    Turmite(int, int, int, int, int, const std::string&);
 
     void move(int);
+
 
 };
 
