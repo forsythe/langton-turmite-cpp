@@ -7,3 +7,11 @@ The program will ask you for a movement pattern when you first run it. See expla
 
 
 ### Gallery  
+Movement pattern: `RRRLRLLLLLLRRRRL`  
+![demo](https://i.gyazo.com/689db989ddaf5a09311b74c2f792f80c.gif)  
+
+### Customizable options under `defs.h`  
+`WIDTH`: Window width  
+`HEIGHT`: Window height  
+`CELLSIZE`: Pixel size of each grid  
+`STEPSPERFRAME`: How many steps to evaluate before animating a frame
