@@ -29,7 +29,7 @@ int cells[HEIGHT/CELLSIZE][WIDTH/CELLSIZE];
 int rows, cols;
 int numStates;
 string movementPattern;
-
+bool pause = false, keydown = false, toToggle = false;
 
 Color* palette;
 Color termiteColor = Color(255, 0, 0);
@@ -95,7 +95,26 @@ int main(int argc, char *argv[]) {
     CSDLManagerLite::getInstance()->initializeSDL(WIDTH, HEIGHT, TITLE);
 
     int steps = 0;
+
     while (!CSDLInputManagerLite::getInstance() -> isExit()) {
+
+        if (CSDLInputManagerLite::getInstance() -> isKeyDown(SDL_SCANCODE_SPACE)){
+            keydown = true;
+            toToggle = true;
+        } else{
+            keydown = false;
+        }
+
+        if (toToggle && !keydown){
+            pause = !pause;
+            toToggle = false;
+        }
+        cout<<rand()<<endl;
+
+        if (pause){
+            CSDLInputManagerLite::getInstance() -> update();
+            continue;
+        }
         iteration(bob);
 
         if (steps%STEPSPERFRAME == 0){

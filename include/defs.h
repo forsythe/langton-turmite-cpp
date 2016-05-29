@@ -7,5 +7,6 @@
 
 #define CELLSIZE 5
 #define STEPSPERFRAME 1
+#define DELAYMSPERSTEP 10
 
 #endif // DEFS_H_INCLUDED
