@@ -5,8 +5,7 @@
 #define HEIGHT 720
 #define TITLE "Langton's turmite"
 
-#define CELLSIZE 5
-#define STEPSPERFRAME 1
-#define DELAYMSPERSTEP 10
+#define CELLSIZE 1
+#define STEPSPERFRAME 1000000
 
 #endif // DEFS_H_INCLUDED

@@ -96,6 +96,12 @@ int main(int argc, char *argv[]) {
 
     int steps = 0;
 
+    /*while (SDL_GetTicks() < 1000){
+        update();
+        continue;
+    } */ //useful when recording
+
+
     while (!CSDLInputManagerLite::getInstance() -> isExit()) {
 
         if (CSDLInputManagerLite::getInstance() -> isKeyDown(SDL_SCANCODE_SPACE)){
@@ -109,12 +115,12 @@ int main(int argc, char *argv[]) {
             pause = !pause;
             toToggle = false;
         }
-        cout<<rand()<<endl;
 
         if (pause){
             CSDLInputManagerLite::getInstance() -> update();
             continue;
         }
+
         iteration(bob);
 
         if (steps%STEPSPERFRAME == 0){
