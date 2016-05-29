@@ -12,7 +12,7 @@ Turmite::Turmite(int r_rhs, int c_rhs, int angle_rhs, int num_rows, int num_cols
     moveLeft = new bool[moves.length()];
 
     for (int k = 0; k < moves.length(); k++) {
-        *(moveLeft+k) = (moves.at(k) == 'L');
+        *(moveLeft+k) = (moves.at(k) == 'L' || moves.at(k) == 'l');
     }
 }
 

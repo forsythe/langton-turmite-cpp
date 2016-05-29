@@ -63,6 +63,8 @@ void redrawGrid(){
             }
         }
     }
+
+
 }
 
 int main(int argc, char *argv[]) {
@@ -97,9 +99,9 @@ int main(int argc, char *argv[]) {
         iteration(bob);
 
         if (steps%STEPSPERFRAME == 0){
+            redrawGrid();
             CSDLManagerLite::getInstance() -> setColor(termiteColor.r, termiteColor.g, termiteColor.b, 255);
             CSDLManagerLite::getInstance() -> drawRectTLCorner(bob->c*CELLSIZE, bob->r*CELLSIZE, CELLSIZE, CELLSIZE);
-            redrawGrid();
             update();
         }
         steps++;
