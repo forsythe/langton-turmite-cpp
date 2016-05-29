@@ -7,8 +7,16 @@ The program will ask you for a movement pattern when you first run it. See expla
 
 
 ### Gallery  
+Movement pattern: `LLRRRLRRRRR`  
+![demo](https://i.gyazo.com/7d90599e63ad8938486b800b9ec3233c.gif)  
+
 Movement pattern: `RRRLRLLLLLLRRRRL`  
 ![demo](https://i.gyazo.com/689db989ddaf5a09311b74c2f792f80c.gif)  
+
+Movement pattern: `RRRLRLLLLLLRRRRL`  
+![demo](https://i.gyazo.com/12c67444c6debde67fa50d6b5ec6a172.gif)  
+
+
 
 ### Customizable options under `defs.h`  
 `WIDTH`: Window width  
